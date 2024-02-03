@@ -107,6 +107,7 @@
               <!-- Add your user profile content here -->
               <a href="login.php">User Login</a>
               <a href="agencyLogin.php">Agency Login</a>
+              <button onclick="deleteAllCookies()">Logout</button>
               <!-- Add more details as needed -->
 
             </div>
@@ -125,3 +126,21 @@
 
     </div>
   </header>
+
+    <script>
+      function deleteAllCookies() {
+          // Get all cookies
+          var cookies = document.cookie.split(";");
+
+          // Loop through each cookie and delete it
+          for (var i = 0; i < cookies.length; i++) {
+              var cookie = cookies[i];
+              var eqPos = cookie.indexOf("=");
+              var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+              document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+          }
+
+          location.reload();
+          header("location:home.php");
+      }
+    </script>

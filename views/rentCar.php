@@ -1,3 +1,34 @@
+<?php
+
+    include '../dbConnection/connection.php';
+
+    
+    if($_SERVER["REQUEST_METHOD"]=="POST"){  
+        
+        $numberOfDay = $_POST['numberOfDay'];
+        $startdate = $_POST['startdate'];
+        $agency_id = $_POST['agency_id'];
+        if (isset($_COOKIE["userID"])) {
+          $userID = $_COOKIE["userID"];
+        }
+        if(isset($_GET['carID'])) {
+          $carID = $_GET['carID'];
+        }
+  
+        $sql = "INSERT INTO car(user_id,agency_id,numberOfDay,startDate,car_id) VALUES('$userID','$agency_id','$numberOfDay','$startdate','$carID')";
+  
+        $result = mysqli_query($conn,$sql);
+  
+        if($result){
+          //header("location:addCar.php");
+        }
+        else{
+          echo "<script type ='text/javascript'> alert('Upload failed.')</script>";
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -159,6 +190,31 @@
                     <p class="card-price">
                       <strong>₹<?php echo $row['rentPerDay']; ?></strong> / day
                     </p>
+
+                    <p class="card-price" style="display:none;">
+                      <input type="text" id="agency_id" name="agency_id" value="<?php echo $row['agency_id']; ?>">
+                    </p>
+
+                    <p class="card-price">
+                      <input type="date" id="startdate" name="startdate">
+                    </p>
+
+                    <p class="card-price">
+
+                      <select name="numberOfDay" id="numberOfDay">
+                        <option disabled>Number of Days</option>
+                        <?php
+                          // Define the maximum number of days you want to display
+                          $maxDays = 30;
+                  
+                          // Generate options dynamically
+                          for ($i = 1; $i <= $maxDays; $i++) {
+                              echo "<option value='$i'>$i</option>";
+                          }
+                        ?>
+                      </select>
+                    </p>
+
 
                     <!--<button class="btn fav-btn" aria-label="Add to favourite list">
                       <ion-icon name="heart-outline"></ion-icon>
