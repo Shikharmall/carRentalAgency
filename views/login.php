@@ -27,8 +27,12 @@
         $name1 = "isAdmin";
         $admin = false;
 
+        $name2 = "userID";
+        $userid = $row['id'];
+
         setcookie($name, $login ? 1 : 0, $expiration_time, "/");
         setcookie($name1, $admin ? 1 : 0, $expiration_time, "/");
+        setcookie($name2, $userid, $expiration_time, "/");
         header("location:home.php");
 
       } else {
