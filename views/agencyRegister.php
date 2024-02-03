@@ -2,23 +2,24 @@
 
    include '../dbConnection/connection.php';
 
-  //$login = false;
   $showError = false;
 
   if($_SERVER["REQUEST_METHOD"]=="POST")
   {
     $showError = false;
     $name = $_POST['name'];
+    $address = $_POST['address'];
+    $owner = $_POST['owner'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    $sql = "INSERT INTO user(name, email, password) VALUES ('$name','$email','$hashedPassword')";
+    $sql = "INSERT INTO agency(name, address, owner, email, password) VALUES ('$name','$address','$owner','$email','$hashedPassword')";
 
     $result = mysqli_query($conn,$sql);
 
     if($result){
-        header("location:login.php");
+        header("location:agencyLogin.php");
     }
     else{
         //echo "<script type ='text/javascript'> alert('Upload failed.')</script>";
@@ -34,14 +35,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rental Car | Register Page</title>
+    <title>Rental Car | Agency Register Page</title>
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/agencyRegister.css">
 </head>
 <body>
     <div class="Form-box">
-        <form class="Register-form" action="register.php" method="POST">
-            <h1>Register</h1>
+        <form class="Register-form" action="agencyRegister.php" method="POST">
+            <h1>Agency Register</h1>
             <?php
                 if($showError){
                   echo '<span style="color:red;"> Upload Failed! </span>';
@@ -49,7 +50,17 @@
             ?>
             <div class="input-box">
                 <input type="text" name="name" required>
-                <label>Username</label>
+                <label>Agency Name</label>
+                <ion-icon name="business-outline"></ion-icon>
+            </div>
+            <div class="input-box">
+                <input type="text" name="address" required>
+                <label>Address</label>
+                <ion-icon name="location-outline"></ion-icon>
+            </div>
+            <div class="input-box">
+                <input type="text" name="owner" required>
+                <label>Owner</label>
                 <ion-icon name="person-outline"></ion-icon>
             </div>
             <div class="input-box">
@@ -63,7 +74,7 @@
                 <ion-icon name="lock-closed-outline"></ion-icon>
             </div>
             <button type="submit" class="submit-btn">Register</button>
-            <a href="login.php">Register before ? Login</a>
+            <a href="agencyLogin.php">Register before ? Login</a>
         </form>
     </div>
 

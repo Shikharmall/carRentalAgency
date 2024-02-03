@@ -1,19 +1,30 @@
+<?php
+  // Get the current URL path without the query string
+  //$currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+  //echo $currentPath;
+
+  include '../dbConnection/connection.php';
+
+  $sql = "SELECT * FROM `user`";
+  $result = mysqli_query($conn,$sql);
+
+  if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo $row['name'];
+    }
+  }
+
+?>
 
 <header class="header" data-header>
     
-    <?php
-    // Get the current URL path without the query string
-    $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-    //echo $currentPath;
-    ?>
 
     <div class="container">
 
       <div class="overlay" data-overlay></div>
 
-      <a href="#" class="logo">
-        <img src="../image/logo.svg" alt="Ridex logo">
+      <a href="home.php" class="logo" style="font-size: 20px; color: rgb(31, 31, 31);">
+        Rental Car
       </a>
 
       <nav class="navbar" data-navbar>
@@ -31,9 +42,35 @@
             <a href="exploreCar.php" class="navbar-link" data-nav-link>Explore cars</a>
           </li>
 
-          <li>
-            <a href="#" class="navbar-link" data-nav-link>Add cars</a>
-          </li>
+          <?php
+    
+            if (isset($_COOKIE["LoggedIn"]) && isset($_COOKIE["isAdmin"])) {
+
+              $isLoggedIn = $_COOKIE["LoggedIn"];
+              $isAdmin = $_COOKIE["isAdmin"];
+              
+              if($isLoggedIn){
+                if($isAdmin){
+
+          ?>
+                  <li>
+                    <a href="#" class="navbar-link" data-nav-link>Add cars</a>
+                  </li>
+            
+          <?php
+                }else{
+          ?>
+                  <li>
+                    <a href="#" class="navbar-link" data-nav-link>Rended cars</a>
+                  </li>
+       
+          <?php
+              }
+            }
+
+            } 
+          ?>
+
 
         </ul>
       </nav>

@@ -7,14 +7,13 @@
 
   if($_SERVER["REQUEST_METHOD"]=="POST")
   {
-    $showError = false;
+    $showError = true;
     $email = $_POST['email'];
     $password  = $_POST['password'];
  
-    $sql = "Select * from user where email = '$email'";
+    $sql = "Select * from agency where email = '$email'";
  
     $result = mysqli_query($conn,$sql);
-
     if ($result && mysqli_num_rows($result) > 0) {
       $row = mysqli_fetch_assoc($result);
       $storedHashedPassword = $row['password'];
@@ -25,7 +24,7 @@
         $expiration_time = time() + 3600;
 
         $name1 = "isAdmin";
-        $admin = false;
+        $admin = true;
 
         setcookie($name, $login ? 1 : 0, $expiration_time, "/");
         setcookie($name1, $admin ? 1 : 0, $expiration_time, "/");
@@ -37,8 +36,35 @@
     } else {
       $showError = true;
     }
+
+    /*$num = mysqli_num_rows($result);
+    $singleRow = mysqli_fetch_row($result);
+ 
+    if($num == 1){
+      
+      $name = "LoggedIn";
+      $login = true;
+      $expiration_time = time() + 3600;
+
+      $name1 = "isAdmin";
+      $admin = true;
+
+      // Store boolean values as integers in cookies
+      setcookie($name, $login ? 1 : 0, $expiration_time, "/");
+      setcookie($name1, $admin ? 1 : 0, $expiration_time, "/");
+
+      //session_start();
+      //$_SESSION['loggedin'] = true;
+      //$_SESSION['brand'] = $singleRow['4'];
+      //$_SESSION['desination'] = $singleRow['5'];
+      header("location:home.php");
+    }
+    else{
+      $showError = true;
+    }*/
      
   }
+
 
 ?>
 
@@ -47,7 +73,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rental Car | Login Page</title>
+    <title>Rental Car | Agency Login Page</title>
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../css/login.css">
 </head>
@@ -55,8 +81,8 @@
     <div class="Form-box">
 
 
-        <form class="Login-form" action="login.php" method="POST">
-            <h1>Login</h1>
+        <form class="Login-form" action="agencyLogin.php" method="POST">
+            <h1>Agency Login</h1>
             <?php
                 if($showError){
                   echo '<span style="color:red;"> Invalid Credentials </span>';
@@ -73,7 +99,7 @@
                 <ion-icon name="lock-closed-outline"></ion-icon>
             </div>
             <button type="submit" class="submit-btn">Login</button>
-            <a href="register.php">Don't have an account ? Register</a>
+            <a href="agencyRegister.php">Don't have an account ? Register</a>
         </form>
     </div>
 

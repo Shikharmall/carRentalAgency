@@ -28,10 +28,27 @@
 
 <body>
 
-  <?php
-    include '../components/header.php';
-  ?>
+    <?php
+      include '../components/header.php';
+    ?>
 
+    <br><br><br>
+  
+    <?php
+
+      include '../dbConnection/connection.php';
+      //$cart = isset($_COOKIE["cart"]) ? $_COOKIE["cart"] : "[]";
+      //$cart = json_decode($cart);
+      //$cartname = isset($_COOKIE["cartname"]) ? $_COOKIE["cartname"] : "[]";
+      //$cartname = json_decode($cartname);
+      //$total  = 0;
+
+      $flag = 0;
+    
+      $sql = "SELECT * FROM `car`";
+      $result = mysqli_query($conn,$sql);
+    
+    ?>
 
   <main>
     <article>
@@ -43,22 +60,29 @@
       <section class="section featured-car" id="featured-car">
         <div class="container">
 
-          <div class="title-wrapper">
+          <!--<div class="title-wrapper">
 
             <a href="#" class="featured-car-link">
               <span>View more</span>
 
               <ion-icon name="arrow-forward-outline"></ion-icon>
             </a>
-          </div>
+          </div>-->
 
           <ul class="featured-car-list">
+
+            <?php
+
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    
+            ?>
 
             <li>
               <div class="featured-car-card">
 
                 <figure class="card-banner">
-                  <img src="./assets/images/car-1.jpg" alt="Toyota RAV4 2021" loading="lazy" width="440" height="300"
+                  <img src="../uploadCarImages/<?php echo $row['image']; ?>" alt="Toyota RAV4 2021" loading="lazy" width="440" height="300"
                     class="w-100">
                 </figure>
 
@@ -66,10 +90,10 @@
 
                   <div class="card-title-wrapper">
                     <h3 class="h3 card-title">
-                      <a href="#">Toyota RAV4</a>
+                      <a href="#"><?php echo $row['model']; ?></a>
                     </h3>
 
-                    <data class="year" value="2021">2021</data>
+                    <data class="year" value="2021"><?php echo $row['regNumber']; ?></data>
                   </div>
 
                   <ul class="card-list">
@@ -77,25 +101,25 @@
                     <li class="card-list-item">
                       <ion-icon name="people-outline"></ion-icon>
 
-                      <span class="card-item-text">4 People</span>
+                      <span class="card-item-text"><?php echo $row['seatCapacity']; ?> People</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="flash-outline"></ion-icon>
 
-                      <span class="card-item-text">Hybrid</span>
+                      <span class="card-item-text"><?php echo $row['maxSpeed']; ?>km / hr</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="speedometer-outline"></ion-icon>
 
-                      <span class="card-item-text">6.1km / 1-litre</span>
+                      <span class="card-item-text"><?php echo $row['mileage']; ?>km / 1-litre</span>
                     </li>
 
                     <li class="card-list-item">
                       <ion-icon name="hardware-chip-outline"></ion-icon>
 
-                      <span class="card-item-text">Automatic</span>
+                      <span class="card-item-text"><?php echo $row['gearType']; ?></span>
                     </li>
 
                   </ul>
@@ -103,12 +127,12 @@
                   <div class="card-price-wrapper">
 
                     <p class="card-price">
-                      <strong>$440</strong> / month
+                      <strong>₹<?php echo $row['rentPerDay']; ?></strong> / day
                     </p>
 
-                    <button class="btn fav-btn" aria-label="Add to favourite list">
+                    <!--<button class="btn fav-btn" aria-label="Add to favourite list">
                       <ion-icon name="heart-outline"></ion-icon>
-                    </button>
+                    </button>-->
 
                     <button class="btn">Rent now</button>
 
@@ -118,6 +142,16 @@
 
               </div>
             </li>
+
+            <?php
+                }
+                
+                } else {
+                    echo "No results found.";
+                }
+            ?>
+
+            <!--
 
             <li>
               <div class="featured-car-card">
@@ -443,6 +477,7 @@
 
               </div>
             </li>
+                    -->
 
           </ul>
 
@@ -453,12 +488,9 @@
     </article>
   </main>
 
-
-  <?php
-    include '../components/footer.php';
-  ?>
-
-
+    <?php
+      include '../components/footer.php';
+    ?>
 
   <!-- 
     - custom js link

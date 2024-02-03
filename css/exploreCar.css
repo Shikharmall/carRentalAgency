@@ -1189,6 +1189,7 @@
     .blog .has-scrollbar > li {
       max-width: 340px;
       scroll-snap-align: center;
+      color: rgb(31, 31, 31);
     }
   
   

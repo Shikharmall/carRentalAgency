@@ -33,6 +33,7 @@
   ?>
 
 
+
   <main>
     <article>
 
@@ -80,10 +81,6 @@
 
         </div>
       </section>
-
-
-
-
 
       <!-- 
         - #FEATURED CAR
@@ -499,10 +496,6 @@
         </div>
       </section>-->
 
-
-
-
-
       <!-- 
         - #GET START
       -->
@@ -585,9 +578,6 @@
 
         </div>
       </section>-->
-
-
-
 
 
       <!-- 
@@ -816,6 +806,17 @@
 
 
   <?php
+  
+  $name = "LoggedIn";
+    
+  // Check if the cookie is set
+  if (isset($_COOKIE[$name])) {
+      // Access the value of the cookie
+      $value = $_COOKIE[$name];
+      echo "Cookie value: " . $value;
+  } else {
+      echo "Cookie not set.";
+  }
     include '../components/footer.php';
   ?>
 
