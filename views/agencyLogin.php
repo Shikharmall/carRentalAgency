@@ -1,6 +1,6 @@
 <?php
 
-   include '../dbConnection/connection.php';
+  include '../dbConnection/connection.php';
 
   $login = false;
   $showError = false;
@@ -40,32 +40,6 @@
     } else {
       $showError = true;
     }
-
-    /*$num = mysqli_num_rows($result);
-    $singleRow = mysqli_fetch_row($result);
- 
-    if($num == 1){
-      
-      $name = "LoggedIn";
-      $login = true;
-      $expiration_time = time() + 3600;
-
-      $name1 = "isAdmin";
-      $admin = true;
-
-      // Store boolean values as integers in cookies
-      setcookie($name, $login ? 1 : 0, $expiration_time, "/");
-      setcookie($name1, $admin ? 1 : 0, $expiration_time, "/");
-
-      //session_start();
-      //$_SESSION['loggedin'] = true;
-      //$_SESSION['brand'] = $singleRow['4'];
-      //$_SESSION['desination'] = $singleRow['5'];
-      header("location:home.php");
-    }
-    else{
-      $showError = true;
-    }*/
      
   }
 

@@ -54,7 +54,7 @@
 
           ?>
                   <li>
-                    <a href="#" class="navbar-link" data-nav-link>Add cars</a>
+                    <a href="addCar.php" class="navbar-link" data-nav-link>Add cars</a>
                   </li>
             
           <?php
@@ -89,9 +89,23 @@
           <span id="aria-label-txt">Explore cars</span>
         </a>
 
-        <a href="#" class="btn user-btn" aria-label="Profile">
+        <a onclick="openProfileModal()" class="btn user-btn" aria-label="Profile" style="position: relative;">
           <ion-icon name="person-outline"></ion-icon>
         </a>
+        <div id="profileModal" class="modal">
+
+            <div class="modal-content">
+              <h2>User Profile</h2>
+              <!-- Add your user profile content here -->
+              <a href="login.php">User Login</a>
+              <a href="agencyLogin.php">Agency Login</a>
+              <!-- Add more details as needed -->
+
+            </div>
+
+        </div>
+
+
 
         <button class="nav-toggle-btn" data-nav-toggle-btn aria-label="Toggle Menu">
           <span class="one"></span>

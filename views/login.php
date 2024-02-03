@@ -57,8 +57,6 @@
 </head>
 <body>
     <div class="Form-box">
-
-
         <form class="Login-form" action="login.php" method="POST">
             <h1>Login</h1>
             <?php

@@ -7,6 +7,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rental Car | Home</title>
 
+  <style>
+        /* Style for the modal container */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        /* Style for the modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        /* Style for the close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
   <!-- 
     - favicon
   -->
@@ -806,17 +844,6 @@
 
 
   <?php
-  
-  $name = "LoggedIn";
-    
-  // Check if the cookie is set
-  if (isset($_COOKIE[$name])) {
-      // Access the value of the cookie
-      $value = $_COOKIE[$name];
-      echo "Cookie value: " . $value;
-  } else {
-      echo "Cookie not set.";
-  }
     include '../components/footer.php';
   ?>
 
@@ -832,6 +859,9 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  <script src="../js/openModal.js"></script>
+  
 
 </body>
 
