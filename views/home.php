@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rental Car | Home</title>
 
-  <style>
+    <style>
         /* Style for the modal container */
         .modal {
             display: none;

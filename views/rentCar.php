@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rental Car | All Cars</title>
+  <title>Rental Car | Rent Car</title>
 
     <style>
         /* Style for the modal container */
@@ -53,7 +53,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="../css/exploreCar.css">
+  <link rel="stylesheet" href="../css/rentCar.css">
 
   <!-- 
     - google font link
@@ -76,12 +76,16 @@
 
       include '../dbConnection/connection.php';
 
-      if (isset($_COOKIE["userID"])) {
-        $userID = $_COOKIE["userID"];
+      if(isset($_GET['carID'])) {
+        $carID = $_GET['carID'];
+        $sql = "SELECT * FROM `car` where id = '$carID'";
+        $result = mysqli_query($conn,$sql);
+      } else {
+        echo "No id parameter provided in the URL.";
       }
     
-      $sql = "SELECT * FROM `car` where agency = '$userID'";
-      $result = mysqli_query($conn,$sql);
+      //$sql = "SELECT * FROM `car`";
+      //$result = mysqli_query($conn,$sql);
     
     ?>
 
@@ -94,15 +98,6 @@
 
       <section class="section featured-car" id="featured-car">
         <div class="container">
-
-          <!--<div class="title-wrapper">
-
-            <a href="#" class="featured-car-link">
-              <span>View more</span>
-
-              <ion-icon name="arrow-forward-outline"></ion-icon>
-            </a>
-          </div>-->
 
           <ul class="featured-car-list">
 
@@ -169,11 +164,7 @@
                       <ion-icon name="heart-outline"></ion-icon>
                     </button>-->
 
-                    <a href="editCar.php?carID=<?php echo $row['id']; ?>">
-                      <button class="btn">
-                        Edit
-                      </button>
-                    </a>
+                    <button class="btn">Rent</button>
 
                   </div>
 

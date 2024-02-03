@@ -7,6 +7,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rental Car | Explore Cars</title>
 
+    <style>
+        /* Style for the modal container */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        /* Style for the modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        /* Style for the close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
   <!-- 
     - favicon
   -->
@@ -52,15 +90,6 @@
 
       <section class="section featured-car" id="featured-car">
         <div class="container">
-
-          <!--<div class="title-wrapper">
-
-            <a href="#" class="featured-car-link">
-              <span>View more</span>
-
-              <ion-icon name="arrow-forward-outline"></ion-icon>
-            </a>
-          </div>-->
 
           <ul class="featured-car-list">
 
@@ -127,7 +156,9 @@
                       <ion-icon name="heart-outline"></ion-icon>
                     </button>-->
 
-                    <button class="btn">Rent now</button>
+                    <a href="rentCar.php?carID=<?php echo $row['id']; ?>">
+                      <button class="btn">Rent now</button>
+                    </a>
 
                   </div>
 

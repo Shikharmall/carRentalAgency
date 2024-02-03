@@ -2,31 +2,53 @@
 
     include '../dbConnection/connection.php';
 
-    if($_SERVER["REQUEST_METHOD"]=="POST"){  
+    if(isset($_GET['carID'])) {
+      $carID = $_GET['carID'];
+      $sql = "SELECT * FROM `car` where id = '$carID'";
+      $result = mysqli_query($conn,$sql);if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+          $modell = $row['model'];
+          $regNumberr = $row['regNumber'];
+          $seatCapacityy = $row['seatCapacity'];
+          $rentPerDayy = $row['rentPerDay'];
+          $gearTypee = $row['gearType'];
+          $mileagee= $row['mileage'];
+          $maxSpeedd = $row['maxSpeed'];
 
-        $model = $_POST['model'];
-        $regNumber = $_POST['regNumber'];
-        $seatCapacity = $_POST['seatCapacity'];
-        $rentPerDay = $_POST['rentPerDay'];
-        $gearType = $_POST['gearType'];
-        $maxSpeed = $_POST['maxSpeed'];
-        $mileage = $_POST['mileage'];
-  
-        $file_name = $_FILES['image']['name'];
-        $file_tmp = $_FILES['image']['tmp_name'];
-        $folder   = '../uploadCarImages/'.$file_name;
-        move_uploaded_file($file_tmp , $folder);
-  
-        $sql = "INSERT INTO car(model,regNumber,seatCapacity,rentPerDay,gearType,maxSpeed,mileage,image) VALUES('$model','$regNumber','$seatCapacity','$rentPerDay','$gearType','$maxSpeed','$mileage','$file_name')";
-  
-        $result = mysqli_query($conn,$sql);
-  
-        if($result){
-          header("location:addCar.php");
         }
-        else{
-          echo "<script type ='text/javascript'> alert('Upload failed.')</script>";
-        }
+      }
+    } else {
+      echo "No id parameter provided in the URL.";
+    }
+
+    if($_SERVER["REQUEST_METHOD"]=="POST"){  
+        
+      $model = $_POST['model'];
+      $regNumber = $_POST['regNumber'];
+      $seatCapacity = $_POST['seatCapacity'];
+      $rentPerDay = $_POST['rentPerDay'];
+      $gearType = $_POST['gearType'];
+      $maxSpeed = $_POST['maxSpeed'];
+      $mileage = $_POST['mileage'];
+
+      $carID = $_GET['carID'];
+
+      //$sql = "UPDATE car SET model = '$model', regNumber = '$regNumber', seatCapacity = '$seatCapacity', rentPerDay = '$rentPerDay', gearType = '$gearType', maxSpeed = '$maxSpeed', mileage = '$mileage' WHERE id = '$carID'";
+
+      $sql = "UPDATE car SET regNumber = '$regNumber' WHERE id = '$carID'";
+
+      $result = mysqli_query($conn,$sql);
+
+      //UPDATE `car` SET `regNumber` = 'UP54-SP7896', `rentPerDay` = '2000' WHERE `car`.`id` = 7;
+
+      if($result){
+        //echo $regNumber;
+       header("location:allCar.php");
+       //echo "<script type ='text/javascript'> alert(".$regNumber.")</script>";
+      }
+      else{
+        echo "<script type ='text/javascript'> alert('Upload failed.')</script>";
+      }
     }
 
 ?>
@@ -93,7 +115,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="../css/addCar.css">
+  <link rel="stylesheet" href="../css/editCar.css">
 
   <!-- 
     - google font link
@@ -122,58 +144,46 @@
 
             <li>
                 <div class="get-start-card">
-
-                    <div class="Form-box">
-                        <form class="Login-form" action="addCar.php" method="POST" enctype="multipart/form-data">
-                            <div class="input-box">
-                                <input type="text" name="model" required>
-                                <label>Model</label>
-                                <ion-icon name="car-outline"></ion-icon>
-                            </div>
-                            <div class="input-box">
-                                <input type="text" name="regNumber" required>
-                                <label>Registration Number</label>
-                                <ion-icon name="document-text-outline"></ion-icon>
-                            </div>
-                            <div class="input-box">
-                                <input type="number" name="seatCapacity" required min="1">
-                                <label>Seat Capacity</label>
-                                <ion-icon name="people-outline"></ion-icon>
-                            </div>
-                            <div class="input-box">
-                                <input type="text" name="rentPerDay" required>
-                                <label>Rent Per Day</label>
-                                <ion-icon name="card-outline"></ion-icon>
-                            </div>
-                            <div class="input-box">
-                                <input type="text" name="gearType" required>
-                                <label>Gear Type</label>
-                                <ion-icon name="cog-outline"></ion-icon>
-                            </div>
-                            <div class="input-box">
-                                <input type="number" name="maxSpeed" required min="0">
-                                <label>Maximum Speed</label>
-                                <ion-icon name="flash-outline"></ion-icon>
-                            </div>
-                            <div class="input-box">
-                                <input type="number" name="mileage" required min="0">
-                                <label>Mileage</label>
-                                <ion-icon name="speedometer-outline"></ion-icon>
-                            </div>
-                            <div class="input-box" id="dashedLine">
-                                <label for="imageInput"> 
-                                    <span id="previewHeading">
-                                        <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12 4a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5a1 1 0 0 1 1-1z" fill="#D3D3D3"/>
-                                        </svg>
-                                    </span> 
-                                </label>
-                                <input type="file" name="image" id="imageInput" accept="image/*" onchange="previewImage()" style="display:none;">
-                                <img src="" alt="Image Preview" class="image-preview" id="imagePreview">
-                            </div>
-                            <button type="submit" class="submit-btn">Add Car</button>
-                        </form>
-                    </div>
+                  <div class="Form-box">
+                      <form class="Login-form" action="editCar.php" method="POST">
+                        <div class="input-box">
+                            <input type="text" name="model" value="<?php echo $modell; ?>" required>
+                            <label>Model</label>
+                            <ion-icon name="car-outline"></ion-icon>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" name="regNumber" value="<?php echo $regNumberr; ?>" required>
+                            <label>Registration Number</label>
+                            <ion-icon name="document-text-outline"></ion-icon>
+                        </div>
+                        <div class="input-box">
+                            <input type="number" name="seatCapacity" value="<?php echo $seatCapacityy; ?>" required min="1">
+                            <label>Seat Capacity</label>
+                            <ion-icon name="people-outline"></ion-icon>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" name="rentPerDay" value="<?php echo $rentPerDayy; ?>" required>
+                            <label>Rent Per Day</label>
+                            <ion-icon name="card-outline"></ion-icon>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" name="gearType" value="<?php echo $gearTypee; ?>" required>
+                            <label>Gear Type</label>
+                            <ion-icon name="cog-outline"></ion-icon>
+                        </div>
+                        <div class="input-box">
+                            <input type="number" name="maxSpeed" value="<?php echo $maxSpeedd; ?>" required min="0">
+                            <label>Maximum Speed</label>
+                            <ion-icon name="flash-outline"></ion-icon>
+                        </div>
+                        <div class="input-box">
+                            <input type="number" name="mileage" value="<?php echo $mileagee; ?>" required min="0">
+                            <label>Mileage</label>
+                            <ion-icon name="speedometer-outline"></ion-icon>
+                        </div>
+                        <button type="submit" class="submit-btn">Update Details</button>
+                    </form>
+                  </div>
 
                 </div>
             </li>

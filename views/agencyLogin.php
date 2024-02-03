@@ -21,7 +21,7 @@
       if (password_verify($password, $storedHashedPassword)) {
         $name = "LoggedIn";
         $login = true;
-        $expiration_time = time() + 3600;
+        $expiration_time = time() + (3600*24);
 
         $name1 = "isAdmin";
         $admin = true;

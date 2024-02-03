@@ -56,6 +56,14 @@
                   <li>
                     <a href="addCar.php" class="navbar-link" data-nav-link>Add cars</a>
                   </li>
+
+                  <li>
+                    <a href="allCar.php" class="navbar-link" data-nav-link>All cars</a>
+                  </li>
+
+                  <li>
+                    <a href="rentalDetails.php" class="navbar-link" data-nav-link>View booked cars</a>
+                  </li>
             
           <?php
                 }else{

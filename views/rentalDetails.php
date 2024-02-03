@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rental Car | All Cars</title>
+  <title>Rental Car | Rental Details</title>
 
     <style>
         /* Style for the modal container */
@@ -53,7 +53,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="../css/exploreCar.css">
+  <link rel="stylesheet" href="../css/rentCar.css">
 
   <!-- 
     - google font link
@@ -74,14 +74,37 @@
   
     <?php
 
-      include '../dbConnection/connection.php';
+        include '../dbConnection/connection.php';
 
-      if (isset($_COOKIE["userID"])) {
-        $userID = $_COOKIE["userID"];
-      }
+        if (isset($_COOKIE["userID"])) {
+            $userID = $_COOKIE["userID"];
+        }
     
-      $sql = "SELECT * FROM `car` where agency = '$userID'";
-      $result = mysqli_query($conn,$sql);
+
+        //SELECT columns FROM table1 LEFT JOIN table2 ON table1.column = table2.column;
+
+
+        //$sql = "SELECT * FROM `rentaldetails` where agency_id = '$userID'";
+        $sql = "SELECT * FROM `rentaldetails` LEFT JOIN `car` ON rentaldetails.car_id = car.id LEFT JOIN `user` ON rentaldetails.user_id = user.id WHERE rentaldetails.agency_id = '$userID'";
+
+        $result = mysqli_query($conn,$sql);
+
+        /*if ($result) {
+            // Check if there are rows returned
+            if (mysqli_num_rows($result) > 0) {
+                // Fetch and display the data
+                while ($row = mysqli_fetch_assoc($result)) {
+                    print_r($row);
+                    echo "<br>";
+                }
+            } else {
+                echo "No results found.";
+            }
+        } else {
+            // Display an error message if the query fails
+            echo "Error: " . mysqli_error($conn);
+        }*/
+        
     
     ?>
 
@@ -95,15 +118,6 @@
       <section class="section featured-car" id="featured-car">
         <div class="container">
 
-          <!--<div class="title-wrapper">
-
-            <a href="#" class="featured-car-link">
-              <span>View more</span>
-
-              <ion-icon name="arrow-forward-outline"></ion-icon>
-            </a>
-          </div>-->
-
           <ul class="featured-car-list">
 
             <?php
@@ -115,11 +129,6 @@
 
             <li>
               <div class="featured-car-card">
-
-                <figure class="card-banner">
-                  <img src="../uploadCarImages/<?php echo $row['image']; ?>" alt="Toyota RAV4 2021" loading="lazy" width="440" height="300"
-                    class="w-100">
-                </figure>
 
                 <div class="card-content">
 
@@ -134,27 +143,27 @@
                   <ul class="card-list">
 
                     <li class="card-list-item">
-                      <ion-icon name="people-outline"></ion-icon>
+                        <ion-icon name="person-outline"></ion-icon>
 
-                      <span class="card-item-text"><?php echo $row['seatCapacity']; ?> People</span>
+                        <span class="card-item-text"><?php echo $row['name']; ?></span>
                     </li>
 
                     <li class="card-list-item">
-                      <ion-icon name="flash-outline"></ion-icon>
+                        <ion-icon name="mail-outline"></ion-icon>
 
-                      <span class="card-item-text"><?php echo $row['maxSpeed']; ?>km / hr</span>
+                        <span class="card-item-text"><?php echo $row['email']; ?></span>
                     </li>
 
                     <li class="card-list-item">
-                      <ion-icon name="speedometer-outline"></ion-icon>
+                        <ion-icon name="calendar-outline"></ion-icon>
 
-                      <span class="card-item-text"><?php echo $row['mileage']; ?>km / 1-litre</span>
+                        <span class="card-item-text"><?php echo $row['numberOfDay']; ?> Days</span>
                     </li>
 
                     <li class="card-list-item">
-                      <ion-icon name="hardware-chip-outline"></ion-icon>
+                        <ion-icon name="today-outline"></ion-icon>
 
-                      <span class="card-item-text"><?php echo $row['gearType']; ?></span>
+                        <span class="card-item-text"><?php echo $row['startDate']; ?>(start)</span>
                     </li>
 
                   </ul>
@@ -162,18 +171,14 @@
                   <div class="card-price-wrapper">
 
                     <p class="card-price">
-                      <strong>₹<?php echo $row['rentPerDay']; ?></strong> / day
+                      <strong>₹<?php echo ($row['numberOfDay'])*($row['rentPerDay']) ?></strong> (Total Payment)
                     </p>
 
                     <!--<button class="btn fav-btn" aria-label="Add to favourite list">
                       <ion-icon name="heart-outline"></ion-icon>
-                    </button>-->
+                    </button>
 
-                    <a href="editCar.php?carID=<?php echo $row['id']; ?>">
-                      <button class="btn">
-                        Edit
-                      </button>
-                    </a>
+                    <button class="btn">Rent</button>-->
 
                   </div>
 

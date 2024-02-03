@@ -2,8 +2,9 @@
 
     include '../dbConnection/connection.php';
 
+    
     if($_SERVER["REQUEST_METHOD"]=="POST"){  
-
+        
         $model = $_POST['model'];
         $regNumber = $_POST['regNumber'];
         $seatCapacity = $_POST['seatCapacity'];
@@ -11,13 +12,16 @@
         $gearType = $_POST['gearType'];
         $maxSpeed = $_POST['maxSpeed'];
         $mileage = $_POST['mileage'];
+        if (isset($_COOKIE["userID"])) {
+            $userID = $_COOKIE["userID"];
+        }
   
         $file_name = $_FILES['image']['name'];
         $file_tmp = $_FILES['image']['tmp_name'];
         $folder   = '../uploadCarImages/'.$file_name;
         move_uploaded_file($file_tmp , $folder);
   
-        $sql = "INSERT INTO car(model,regNumber,seatCapacity,rentPerDay,gearType,maxSpeed,mileage,image) VALUES('$model','$regNumber','$seatCapacity','$rentPerDay','$gearType','$maxSpeed','$mileage','$file_name')";
+        $sql = "INSERT INTO car(model,regNumber,seatCapacity,rentPerDay,gearType,maxSpeed,mileage,image,agency) VALUES('$model','$regNumber','$seatCapacity','$rentPerDay','$gearType','$maxSpeed','$mileage','$file_name','$userID')";
   
         $result = mysqli_query($conn,$sql);
   
