@@ -22,43 +22,57 @@
   <link rel="icon" href="../image/logo.svg">
   <title>Rental Car | Rental Details</title>
 
-    <style>
-        /* Style for the modal container */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-        /* Style for the modal content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-        /* Style for the close button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
+  <style>
+      /* Style for the modal container */
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          right: 0;
+          /*top: 50px;
+          width: 500px;*/
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          /*background-color: rgb(0,0,0);*/
+          /*background-color: rgba(0,0,0,0.4);*/
+          padding-top: 60px;
+      }
+
+      /* Style for the modal content */
+      .modal-content {
+          background-color: #fefefe;
+          margin: 5% auto;
+          position: absolute;
+          top: -2%;
+          right: 14%;
+          width:  200px;
+          border-radius: 5px;
+      }
+
+      .modal-content a{
+        padding: 20px;
+      }
+
+      .modal-content a:hover{
+        background-color: #f8f1e6;
+        color: gray;
+      }
+      /* Style for the close button */
+      .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+      }
+  </style>
 
   <!-- 
     - favicon

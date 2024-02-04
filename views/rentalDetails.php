@@ -23,60 +23,60 @@
   <title>Rental Car | Rental Details</title>
 
     <style>
-        /* Style for the modal container */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-        /* Style for the modal content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-        }
-        /* Style for the close button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+      /* Style for the modal container */
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          right: 0;
+          /*top: 50px;
+          width: 500px;*/
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          /*background-color: rgb(0,0,0);*/
+          /*background-color: rgba(0,0,0,0.4);*/
+          padding-top: 60px;
+      }
+
+      /* Style for the modal content */
+      .modal-content {
+          background-color: #fefefe;
+          margin: 5% auto;
+          position: absolute;
+          top: -2%;
+          right: 14%;
+          width:  200px;
+          border-radius: 5px;
+      }
+
+      .modal-content a{
+        padding: 20px;
+      }
+
+      .modal-content a:hover{
+        background-color: #f8f1e6;
+        color: gray;
+      }
+      /* Style for the close button */
+      .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+      }
     </style>
-
-  <!-- 
-    - favicon
-  -->
-  <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
-
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="../css/rentalDetails.css">
-
-  <!-- 
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap"
-    rel="stylesheet">
+    <link rel="stylesheet" href="../css/rentalDetails.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>

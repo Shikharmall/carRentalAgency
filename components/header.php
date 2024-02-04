@@ -87,32 +87,30 @@
         <a onclick="openProfileModal()" class="btn user-btn" aria-label="Profile" style="position: relative;">
           <ion-icon name="person-outline"></ion-icon>
         </a>
+
         <div id="profileModal" class="modal">
 
-            <div class="modal-content">
-              <h2>User Profile</h2>
-              <!-- Add your user profile content here -->
-              <?php
-
-                if (!isset($_COOKIE["userID"])) {
-              ?>
-
-                <a href="login.php">User Login</a>
-                <a href="agencyLogin.php">Agency Login</a>
-
-              <?php
-                }else{
-              ?>
-
-                <button onclick="deleteAllCookies()">Logout</button>
-                
-              <?php
-                }
-
-              ?>
-
-
-            </div>
+             <div class="modal-content">
+               <?php
+  
+                 if (!isset($_COOKIE["userID"])) {
+               ?>
+  
+                 <a href="login.php">User Login</a>
+                 <a href="agencyLogin.php">Agency Login</a>
+  
+               <?php
+                 }else{
+               ?>
+                 <a onclick="deleteAllCookies()">Logout</a>
+                 
+               <?php
+                 }
+  
+               ?>
+  
+  
+             </div>
 
         </div>
 
@@ -152,8 +150,6 @@
 						</ul>
 					</details>
 				</div>-->
-
-
 
         <button class="nav-toggle-btn" data-nav-toggle-btn aria-label="Toggle Menu">
           <span class="one"></span>
