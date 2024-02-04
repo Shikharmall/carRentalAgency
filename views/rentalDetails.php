@@ -22,7 +22,7 @@
   <link rel="icon" href="../image/logo.svg">
   <title>Rental Car | Rental Details</title>
 
-    <style>
+  <style>
       /* Style for the modal container */
       .modal {
           display: none;
@@ -72,11 +72,12 @@
           text-decoration: none;
           cursor: pointer;
       }
-    </style>
-    <link rel="stylesheet" href="../css/rentalDetails.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+  </style>
+  
+  <link rel="stylesheet" href="../css/rentalDetails.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 
 <body>
