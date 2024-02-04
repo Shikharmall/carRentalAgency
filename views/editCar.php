@@ -15,7 +15,9 @@
     if(isset($_GET['carID'])) {
       $carID = $_GET['carID'];
       $sql = "SELECT * FROM `car` where id = '$carID'";
-      $result = mysqli_query($conn,$sql);if (mysqli_num_rows($result) > 0) {
+      $result = mysqli_query($conn,$sql);
+      if (mysqli_num_rows($result) > 0) {
+
         while ($row = mysqli_fetch_assoc($result)) {
           $modell = $row['model'];
           $regNumberr = $row['regNumber'];
@@ -40,8 +42,7 @@
       $gearType = $_POST['gearType'];
       $maxSpeed = $_POST['maxSpeed'];
       $mileage = $_POST['mileage'];
-
-      $carID = $_GET['carID'];
+      $carID = $_POST['car_id'];
 
       //$sql = "UPDATE car SET model = '$model', regNumber = '$regNumber', seatCapacity = '$seatCapacity', rentPerDay = '$rentPerDay', gearType = '$gearType', maxSpeed = '$maxSpeed', mileage = '$mileage' WHERE id = '$carID'";
 
@@ -156,6 +157,11 @@
                 <div class="get-start-card">
                   <div class="Form-box">
                       <form class="Login-form" action="editCar.php" method="POST">
+                        <div class="input-box" style="display: none;">
+                            <input type="text" name="car_id" value="<?php echo $carID; ?>" required>
+                            <label>Model</label>
+                            <ion-icon name="car-outline"></ion-icon>
+                        </div>
                         <div class="input-box">
                             <input type="text" name="model" value="<?php echo $modell; ?>" required>
                             <label>Model</label>
