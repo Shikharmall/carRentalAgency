@@ -2,6 +2,16 @@
 
     include '../dbConnection/connection.php';
 
+    if (!isset($_COOKIE["userID"])) {
+      header("location:login.php");
+      exit;
+    }
+
+    if ($_COOKIE["isAdmin"] == 1) {
+      header("location:home.php");
+      exit;
+    }
+
     
     if($_SERVER["REQUEST_METHOD"]=="POST"){  
         

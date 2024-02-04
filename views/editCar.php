@@ -2,6 +2,16 @@
 
     include '../dbConnection/connection.php';
 
+    if (!isset($_COOKIE["userID"])) {
+      header("location:agencyLogin.php");
+      exit;
+    }
+  
+    if ($_COOKIE["isAdmin"] == 0) {
+      header("location:home.php");
+      exit;
+    }
+
     if(isset($_GET['carID'])) {
       $carID = $_GET['carID'];
       $sql = "SELECT * FROM `car` where id = '$carID'";

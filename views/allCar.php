@@ -1,3 +1,17 @@
+<?php
+
+  if (!isset($_COOKIE["userID"])) {
+    header("location:agencyLogin.php");
+    exit;
+  }
+
+  if ($_COOKIE["isAdmin"] == 0) {
+    header("location:home.php");
+    exit;
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

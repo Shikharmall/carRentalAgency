@@ -1,6 +1,11 @@
 <?php
 
-   include '../dbConnection/connection.php';
+  include '../dbConnection/connection.php';
+
+  if (isset($_COOKIE["userID"])) {
+    header("location:home.php");
+    exit;
+  }
 
   $login = false;
   $showError = false;

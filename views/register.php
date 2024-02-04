@@ -2,7 +2,11 @@
 
    include '../dbConnection/connection.php';
 
-  //$login = false;
+   if (isset($_COOKIE["userID"])) {
+    header("location:home.php");
+    exit;
+   }
+   
   $showError = false;
 
   if($_SERVER["REQUEST_METHOD"]=="POST")
