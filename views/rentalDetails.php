@@ -67,7 +67,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="../css/rentCar.css">
+  <link rel="stylesheet" href="../css/rentalDetails.css">
 
   <!-- 
     - google font link
@@ -99,7 +99,13 @@
 
 
         //$sql = "SELECT * FROM `rentaldetails` where agency_id = '$userID'";
-        $sql = "SELECT * FROM `rentaldetails` LEFT JOIN `car` ON rentaldetails.car_id = car.id LEFT JOIN `user` ON rentaldetails.user_id = user.id WHERE rentaldetails.agency_id = '$userID'";
+        //$sql = "SELECT * FROM `rentaldetails` LEFT JOIN `car` ON rentaldetails.car_id = car.id LEFT JOIN `user` ON rentaldetails.user_id = user.id WHERE rentaldetails.agency_id = '$userID'";
+
+        $sql = "SELECT * FROM `rentaldetails`
+        LEFT JOIN `car` ON rentaldetails.car_id = car.id
+        LEFT JOIN `user` ON rentaldetails.user_id = user.id
+        WHERE rentaldetails.agency_id = '$userID'
+        ORDER BY rentaldetails.id DESC";
 
         $result = mysqli_query($conn,$sql);
 
@@ -188,11 +194,12 @@
                       <strong>₹<?php echo ($row['numberOfDay'])*($row['rentPerDay']) ?></strong> (Total Payment)
                     </p>
 
-                    <!--<button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
+                    <p class="card-price">
+                      <button class="btn fav-btn" aria-label="Add to favourite list">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                      </button>
+                    </p>
 
-                    <button class="btn">Rent</button>-->
 
                   </div>
 

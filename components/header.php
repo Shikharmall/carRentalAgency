@@ -69,7 +69,7 @@
                 }else{
           ?>
                   <li>
-                    <a href="#" class="navbar-link" data-nav-link>Rended cars</a>
+                    <a href="rendedCars.php" class="navbar-link" data-nav-link>Rended cars</a>
                   </li>
        
           <?php

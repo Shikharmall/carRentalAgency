@@ -1,41 +1,14 @@
 <?php
 
-    include '../dbConnection/connection.php';
+  if (!isset($_COOKIE["userID"])) {
+    header("location:agencyLogin.php");
+    exit;
+  }
 
-    if (!isset($_COOKIE["userID"])) {
-      header("location:login.php");
-      exit;
-    }
-
-    if ($_COOKIE["isAdmin"] == 1) {
-      header("location:home.php");
-      exit;
-    }
-
-    
-    if($_SERVER["REQUEST_METHOD"]=="POST"){  
-        
-        $numberOfDay = $_POST['numberOfDay'];
-        $startdate = $_POST['startdate'];
-        $agency_id = $_POST['agency_id'];
-        if (isset($_COOKIE["userID"])) {
-          $userID = $_COOKIE["userID"];
-        }
-        if(isset($_GET['carID'])) {
-          $carID = $_GET['carID'];
-        }
-  
-        $sql = "INSERT INTO rentaldetails(user_id,agency_id,numberOfDay,startDate,car_id) VALUES('$userID','$agency_id','$numberOfDay','$startdate','$carID')";
-  
-        $result = mysqli_query($conn,$sql);
-  
-        if($result){
-          //header("location:addCar.php");
-        }
-        else{
-          echo "<script type ='text/javascript'> alert('Upload failed.')</script>";
-        }
-    }
+  if ($_COOKIE["isAdmin"] == 1) {
+    header("location:home.php");
+    exit;
+  }
 
 ?>
 
@@ -46,7 +19,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rental Car | Rent Car</title>
+  <title>Rental Car | Rental Details</title>
 
     <style>
         /* Style for the modal container */
@@ -115,18 +88,37 @@
   
     <?php
 
-      include '../dbConnection/connection.php';
+        include '../dbConnection/connection.php';
 
-      if(isset($_GET['carID'])) {
-        $carID = $_GET['carID'];
-        $sql = "SELECT * FROM `car` where id = '$carID'";
-        $result = mysqli_query($conn,$sql);
-      } else {
-        echo "No id parameter provided in the URL.";
-      }
+        if (isset($_COOKIE["userID"])) {
+            $userID = $_COOKIE["userID"];
+        }
     
-      //$sql = "SELECT * FROM `car`";
-      //$result = mysqli_query($conn,$sql);
+
+        //SELECT columns FROM table1 LEFT JOIN table2 ON table1.column = table2.column;
+
+
+        //$sql = "SELECT * FROM `rentaldetails` where agency_id = '$userID'";
+        $sql = "SELECT * FROM `rentaldetails` LEFT JOIN `car` ON rentaldetails.car_id = car.id LEFT JOIN `agency` ON rentaldetails.agency_id = agency.id WHERE rentaldetails.user_id = '$userID' ORDER BY rentaldetails.id DESC ";
+
+        $result = mysqli_query($conn,$sql);
+
+        /*if ($result) {
+            // Check if there are rows returned
+            if (mysqli_num_rows($result) > 0) {
+                // Fetch and display the data
+                while ($row = mysqli_fetch_assoc($result)) {
+                    print_r($row);
+                    echo "<br>";
+                }
+            } else {
+                echo "No results found.";
+            }
+        } else {
+            // Display an error message if the query fails
+            echo "Error: " . mysqli_error($conn);
+        }*/
+        
     
     ?>
 
@@ -152,11 +144,6 @@
             <li>
               <div class="featured-car-card">
 
-                <figure class="card-banner">
-                  <img src="../uploadCarImages/<?php echo $row['image']; ?>" alt="Toyota RAV4 2021" loading="lazy" width="440" height="300"
-                    class="w-100">
-                </figure>
-
                 <div class="card-content">
 
                   <div class="card-title-wrapper">
@@ -170,27 +157,27 @@
                   <ul class="card-list">
 
                     <li class="card-list-item">
-                      <ion-icon name="people-outline"></ion-icon>
+                        <ion-icon name="person-outline"></ion-icon>
 
-                      <span class="card-item-text"><?php echo $row['seatCapacity']; ?> People</span>
+                        <span class="card-item-text"><?php echo $row['name']; ?></span>
                     </li>
 
                     <li class="card-list-item">
-                      <ion-icon name="flash-outline"></ion-icon>
+                        <ion-icon name="mail-outline"></ion-icon>
 
-                      <span class="card-item-text"><?php echo $row['maxSpeed']; ?>km / hr</span>
+                        <span class="card-item-text"><?php echo $row['email']; ?></span>
                     </li>
 
                     <li class="card-list-item">
-                      <ion-icon name="speedometer-outline"></ion-icon>
+                        <ion-icon name="calendar-outline"></ion-icon>
 
-                      <span class="card-item-text"><?php echo $row['mileage']; ?>km / 1-litre</span>
+                        <span class="card-item-text"><?php echo $row['numberOfDay']; ?> Days</span>
                     </li>
 
                     <li class="card-list-item">
-                      <ion-icon name="hardware-chip-outline"></ion-icon>
+                        <ion-icon name="today-outline"></ion-icon>
 
-                      <span class="card-item-text"><?php echo $row['gearType']; ?></span>
+                        <span class="card-item-text"><?php echo $row['startDate']; ?>(start)</span>
                     </li>
 
                   </ul>
@@ -198,39 +185,14 @@
                   <div class="card-price-wrapper">
 
                     <p class="card-price">
-                      <strong>₹<?php echo $row['rentPerDay']; ?></strong> / day
-                    </p>
-
-                    <p class="card-price" style="display:none;">
-                      <input type="text" id="agency_id" name="agency_id" value="<?php echo $row['agency_id']; ?>">
+                      <strong>₹<?php echo ($row['numberOfDay'])*($row['rentPerDay']) ?></strong> (Total Payment)
                     </p>
 
                     <p class="card-price">
-                      <input type="date" id="startdate" name="startdate">
+                      <button class="btn fav-btn" aria-label="Add to favourite list">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                      </button>
                     </p>
-
-                    <p class="card-price">
-
-                      <select name="numberOfDay" id="numberOfDay">
-                        <option disabled>Number of Days</option>
-                        <?php
-                          // Define the maximum number of days you want to display
-                          $maxDays = 30;
-                  
-                          // Generate options dynamically
-                          for ($i = 1; $i <= $maxDays; $i++) {
-                              echo "<option value='$i'>$i</option>";
-                          }
-                        ?>
-                      </select>
-                    </p>
-
-
-                    <!--<button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>-->
-
-                    <button class="btn">Rent</button>
 
                   </div>
 

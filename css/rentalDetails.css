@@ -440,11 +440,11 @@
   
   .featured-car-link:is(:hover, :focus) ion-icon { color: var(--carolina-blue); }
   
-  .featured-car-list {
+  /*.featured-car-list {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 30px;
-  }
+  }*/
   
   .featured-car-card {
     background: var(--gradient);
@@ -495,11 +495,12 @@
     padding: 3px 12px;
     border: 2px dashed hsla(204, 91%, 53%, 0.4);
     border-radius: var(--radius-14);
+    width: 130px;
   }
   
   .featured-car-card .card-list {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
@@ -545,26 +546,21 @@
   .featured-car-card .btn:last-child {
     --height: 36px;
     min-width: 100%;
+    padding: 10px;
+    border-radius: 50%;
   }
   
   .featured-car-card .fav-btn {
-    --background: var(--beau-blue);
-    --color: var(--blue-jeans);
+    background-color: rgb(52, 121, 52);
+    color: white;
     --height: 36px;
     --width: 36px;
     --shadow-2: none;
   }
   
-  .featured-car-card .fav-btn ion-icon { font-size: 18px; }
-  
-  .featured-car-card .fav-btn:is(:hover, :focus) {
-    --background: var(--lavender-blush);
-    --color: var(--red-salsa);
-  }
-  
-  
-  
-  
+  .featured-car-card .fav-btn ion-icon { font-size: 25px; }
+
+
   
   /*-----------------------------------*\
     #GET START
@@ -989,14 +985,31 @@
   /**
    * responsive for large than 350px screen
    */
+
+  @media (max-width: 800px) {
   
-  @media (min-width: 350px) {
+    .featured-car-card .card-list { grid-template-columns: 1fr 1fr; }
+  
+    /*.featured-car-card .card-price { margin-right: auto; }
+  
+    .featured-car-card .btn:last-child {
+      min-width: max-content;
+      padding-inline: 15px;
+    }*/
+
+    .featured-car-card .card-title-wrapper {
+      flex-wrap: wrap;
+    }
+  
+  }
+  
+  @media (max-width: 350px) {
   
     /**
      * FEATURED CAR
      */
   
-    .featured-car-card .card-list { grid-template-columns: 1fr 1fr; }
+    .featured-car-card .card-list { grid-template-columns: 1fr; }
   
     .featured-car-card .card-price { margin-right: auto; }
   
@@ -1004,6 +1017,8 @@
       min-width: max-content;
       padding-inline: 15px;
     }
+
+
   
   }
   
