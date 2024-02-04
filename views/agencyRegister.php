@@ -36,11 +36,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental Car | Agency Register Page</title>
-    <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../image/logo.svg">
     <link rel="stylesheet" href="../css/agencyRegister.css">
 </head>
 <body>
-    <div class="Form-box">
+    <div class="Form-box" style="margin: 5px;">
         <form class="Register-form" action="agencyRegister.php" method="POST">
             <h1>Agency Register</h1>
             <?php

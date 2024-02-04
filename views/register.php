@@ -39,11 +39,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental Car | Register Page</title>
+    <link rel="icon" href="../image/logo.svg">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../css/register.css">
 </head>
 <body>
-    <div class="Form-box">
+    <div class="Form-box" style="margin: 5px;">
         <form class="Register-form" action="register.php" method="POST">
             <h1>Register</h1>
             <?php

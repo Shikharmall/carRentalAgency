@@ -57,11 +57,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental Car | Login Page</title>
-    <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="../image/logo.svg">
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <div class="Form-box">
+    <div class="Form-box" style="margin: 5px;">
         <form class="Login-form" action="login.php" method="POST">
             <h1>Login</h1>
             <?php
