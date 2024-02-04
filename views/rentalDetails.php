@@ -229,18 +229,15 @@
       include '../components/footer.php';
     ?>
 
-  <!-- 
-    - custom js link
-  -->
-  <script src="../assets/js/script.js"></script>
-
-  <!-- 
-    - ionicon link
-  -->
+  <!-- ionicon link -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   
+  <!-- user details modal -->
   <script src="../js/openModal.js"></script>
+  
+  <!-- hamburger -->
+  <script src="../js/hamburger.js"></script>
 
 </body>
 

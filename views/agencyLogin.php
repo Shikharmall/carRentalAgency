@@ -77,7 +77,8 @@
                 <ion-icon name="lock-closed-outline"></ion-icon>
             </div>
             <button type="submit" class="submit-btn">Login</button>
-            <a href="agencyRegister.php">Don't have an account ? Register</a>
+            <div> Don't have an account ? <a href="agencyRegister.php" style="text-decoration: underline;">Register</a> </div> 
+            <a href="home.php" style="text-decoration: underline;">Home</a>
         </form>
     </div>
 
