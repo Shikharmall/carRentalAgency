@@ -105,10 +105,25 @@
             <div class="modal-content">
               <h2>User Profile</h2>
               <!-- Add your user profile content here -->
-              <a href="login.php">User Login</a>
-              <a href="agencyLogin.php">Agency Login</a>
-              <button onclick="deleteAllCookies()">Logout</button>
-              <!-- Add more details as needed -->
+              <?php
+
+                if (!isset($_COOKIE["userID"])) {
+              ?>
+
+                <a href="login.php">User Login</a>
+                <a href="agencyLogin.php">Agency Login</a>
+
+              <?php
+                }else{
+              ?>
+
+                <button onclick="deleteAllCookies()">Logout</button>
+                
+              <?php
+                }
+
+              ?>
+
 
             </div>
 

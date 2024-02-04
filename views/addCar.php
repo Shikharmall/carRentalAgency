@@ -31,7 +31,7 @@
         $folder   = '../uploadCarImages/'.$file_name;
         move_uploaded_file($file_tmp , $folder);
   
-        $sql = "INSERT INTO car(model,regNumber,seatCapacity,rentPerDay,gearType,maxSpeed,mileage,image,agency) VALUES('$model','$regNumber','$seatCapacity','$rentPerDay','$gearType','$maxSpeed','$mileage','$file_name','$userID')";
+        $sql = "INSERT INTO car(model,regNumber,seatCapacity,rentPerDay,gearType,maxSpeed,mileage,image,agency_id) VALUES('$model','$regNumber','$seatCapacity','$rentPerDay','$gearType','$maxSpeed','$mileage','$file_name','$userID')";
   
         $result = mysqli_query($conn,$sql);
   

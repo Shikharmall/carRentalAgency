@@ -67,7 +67,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="../css/rentCar.css">
+  <link rel="stylesheet" href="../css/rentedCars.css">
 
   <!-- 
     - google font link

@@ -18,19 +18,16 @@
         $numberOfDay = $_POST['numberOfDay'];
         $startdate = $_POST['startdate'];
         $agency_id = $_POST['agency_id'];
-        if (isset($_COOKIE["userID"])) {
-          $userID = $_COOKIE["userID"];
-        }
-        if(isset($_GET['carID'])) {
-          $carID = $_GET['carID'];
-        }
+        $carID = $_POST['car_id'];
+        $userID = $_COOKIE["userID"];
+        
   
         $sql = "INSERT INTO rentaldetails(user_id,agency_id,numberOfDay,startDate,car_id) VALUES('$userID','$agency_id','$numberOfDay','$startdate','$carID')";
   
         $result = mysqli_query($conn,$sql);
   
         if($result){
-          //header("location:addCar.php");
+          header("location:rendedCars.php");
         }
         else{
           echo "<script type ='text/javascript'> alert('Upload failed.')</script>";
@@ -119,14 +116,11 @@
 
       if(isset($_GET['carID'])) {
         $carID = $_GET['carID'];
-        $sql = "SELECT * FROM `car` where id = '$carID'";
+        $sql = "SELECT * FROM `car` LEFT JOIN `agency` ON car.agency_id = agency.id WHERE car.id = '$carID'";
         $result = mysqli_query($conn,$sql);
       } else {
         echo "No id parameter provided in the URL.";
       }
-    
-      //$sql = "SELECT * FROM `car`";
-      //$result = mysqli_query($conn,$sql);
     
     ?>
 
@@ -161,10 +155,10 @@
 
                   <div class="card-title-wrapper">
                     <h3 class="h3 card-title">
-                      <a href="#"><?php echo $row['model']; ?></a>
+                      <a><?php echo $row['model']; ?> (<?php echo $row['name']; ?>)</a>
                     </h3>
 
-                    <data class="year" value="2021"><?php echo $row['regNumber']; ?></data>
+                    <data class="year" ><?php echo $row['regNumber']; ?></data>
                   </div>
 
                   <ul class="card-list">
@@ -195,14 +189,17 @@
 
                   </ul>
 
+                  <form action="rentCar.php" method="POST">
+
                   <div class="card-price-wrapper">
 
-                    <p class="card-price">
-                      <strong>₹<?php echo $row['rentPerDay']; ?></strong> / day
+                    <p class="card-price" style="display:flex; align-items: center;">
+                      <strong style="display:flex;"> ₹<span id='calculateRent'><?php echo $row['rentPerDay']; ?></span> </strong> (<span id='totaldays'>1</span>days)
                     </p>
 
                     <p class="card-price" style="display:none;">
                       <input type="text" id="agency_id" name="agency_id" value="<?php echo $row['agency_id']; ?>">
+                      <input type="text" id="car_id" name="car_id" value="<?php echo $_GET['carID']; ?>">
                     </p>
 
                     <p class="card-price">
@@ -211,7 +208,7 @@
 
                     <p class="card-price">
 
-                      <select name="numberOfDay" id="numberOfDay">
+                      <select name="numberOfDay" id="numberOfDay" onchange="getTotalRent(<?php echo $row['rentPerDay']; ?>)">
                         <option disabled>Number of Days</option>
                         <?php
                           // Define the maximum number of days you want to display
@@ -225,14 +222,11 @@
                       </select>
                     </p>
 
-
-                    <!--<button class="btn fav-btn" aria-label="Add to favourite list">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>-->
-
-                    <button class="btn">Rent</button>
+                    <button  type="submit" class="btn">Rent</button>
 
                   </div>
+
+                  </form>
 
                 </div>
 
@@ -272,6 +266,19 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   
   <script src="../js/openModal.js"></script>
+  <script>
+    function getTotalRent(rentPerDay) {
+      
+      var numberOfDaysSelect = document.getElementById("numberOfDay");
+      var calculateRent = document.getElementById("calculateRent");
+      var totaldays = document.getElementById("totaldays");
+      var selectedNumberOfDays = parseInt(numberOfDaysSelect.value);
+      var totalRent = rentPerDay * selectedNumberOfDays;
+      calculateRent.innerHTML = totalRent;
+      totaldays.innerHTML = selectedNumberOfDays;
+      
+    }
+  </script>
 
 </body>
 
