@@ -195,12 +195,6 @@
                       <strong>₹<?php echo ($row['numberOfDay'])*($row['rentPerDay']) ?></strong> (Total Payment)
                     </p>
 
-                    <p class="card-price">
-                      <button class="btn fav-btn" aria-label="Add to favourite list">
-                        <ion-icon name="checkmark-circle-outline"></ion-icon>
-                      </button>
-                    </p>
-
 
                   </div>
 

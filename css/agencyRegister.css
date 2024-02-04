@@ -17,7 +17,7 @@ body{
 .Form-box{
     position: relative;
     width: 400px;
-    height: 630px;
+    height: 580px;
     backdrop-filter: blur(40px);
     color: white;
     font-size: 20px;
