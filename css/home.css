@@ -753,7 +753,7 @@ button, a { transition: var(--transition); }
 .footer a { color: inherit; }
 
 .footer-top {
-  padding-block: 60px;
+  padding-block: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

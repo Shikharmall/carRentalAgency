@@ -213,7 +213,25 @@
                 }
                 
                 } else {
-                    echo "No results found.";
+                  
+            ?>
+                <center>
+
+                  <br><br><br><br><br> <br>
+
+                  <img
+                    width= "100"
+                    height="100"
+                    src="https://img.icons8.com/pastel-glyph/64/no-document--v1.png"
+                    alt="no-document--v1"
+                  />
+
+                  <h1>No results found.</h1>
+
+                  <br><br><br><br><br> 
+
+                </center>
+            <?php
                 }
             ?>
 
