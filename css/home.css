@@ -985,7 +985,7 @@ button, a { transition: var(--transition); }
 
   .hero-banner {
     display: block;
-    background: url("../image/hero-banner.jpg") no-repeat;
+    background: url("../image/carRental.jpg") no-repeat;
     background-size: cover;
     background-position: left;
     position: absolute;

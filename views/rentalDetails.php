@@ -147,7 +147,7 @@
                     
             ?>
 
-            <li>
+            <li style="margin: 5px;">
               <div class="featured-car-card">
 
                 <div class="card-content">
@@ -183,7 +183,7 @@
                     <li class="card-list-item">
                         <ion-icon name="today-outline"></ion-icon>
 
-                        <span class="card-item-text"><?php echo $row['startDate']; ?>(start)</span>
+                        <span class="card-item-text"><?php echo $row['startDate']; ?> (Start Date)</span>
                     </li>
 
                   </ul>

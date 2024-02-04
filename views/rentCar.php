@@ -27,7 +27,7 @@
         $result = mysqli_query($conn,$sql);
   
         if($result){
-          header("location:rendedCars.php");
+          header("location:rentedCars.php");
         }
         else{
           echo "<script type ='text/javascript'> alert('Upload failed.')</script>";

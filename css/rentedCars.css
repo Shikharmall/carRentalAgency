@@ -854,11 +854,7 @@
   
   }
   
-  @media (max-width: 350px) {
-  
-    /**
-     * FEATURED CAR
-     */
+  @media (max-width: 480px) {
   
     .featured-car-card .card-list { grid-template-columns: 1fr; }
   
@@ -868,8 +864,6 @@
       min-width: max-content;
       padding-inline: 15px;
     }
-
-
   
   }
   

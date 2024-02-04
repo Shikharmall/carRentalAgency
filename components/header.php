@@ -8,12 +8,6 @@
   $sql = "SELECT * FROM `user`";
   $result = mysqli_query($conn,$sql);
 
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-      echo $row['name'];
-    }
-  }
-
 ?>
 
 <header class="header" data-header>
@@ -69,7 +63,7 @@
                 }else{
           ?>
                   <li>
-                    <a href="rendedCars.php" class="navbar-link" data-nav-link>Rended cars</a>
+                    <a href="rentedCars.php" class="navbar-link" data-nav-link>Rended cars</a>
                   </li>
        
           <?php

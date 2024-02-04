@@ -94,7 +94,7 @@
         $userID = $_COOKIE["userID"];
       }
     
-      $sql = "SELECT * FROM `car` where agency = '$userID'";
+      $sql = "SELECT * FROM `car` where agency_id = '$userID'";
       $result = mysqli_query($conn,$sql);
     
     ?>

@@ -1,7 +1,7 @@
 <?php
 
   if (!isset($_COOKIE["userID"])) {
-    header("location:agencyLogin.php");
+    header("location:login.php");
     exit;
   }
 
@@ -141,14 +141,14 @@
                     
             ?>
 
-            <li>
+            <li style="margin: 5px;">
               <div class="featured-car-card">
 
                 <div class="card-content">
 
                   <div class="card-title-wrapper">
                     <h3 class="h3 card-title">
-                      <a href="#"><?php echo $row['model']; ?></a>
+                      <a><?php echo $row['model']; ?></a>
                     </h3>
 
                     <data class="year" value="2021"><?php echo $row['regNumber']; ?></data>
@@ -177,7 +177,7 @@
                     <li class="card-list-item">
                         <ion-icon name="today-outline"></ion-icon>
 
-                        <span class="card-item-text"><?php echo $row['startDate']; ?>(start)</span>
+                        <span class="card-item-text"><?php echo $row['startDate']; ?> (Start Date)</span>
                     </li>
 
                   </ul>
