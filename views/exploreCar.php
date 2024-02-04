@@ -79,7 +79,7 @@
 
       include '../dbConnection/connection.php';
     
-      $sql = "SELECT * FROM `car`";
+      $sql = "SELECT * FROM `car` LEFT JOIN `agency` ON car.agency_id = agency.id ORDER BY car.id DESC";
       $result = mysqli_query($conn,$sql);
     
     ?>
@@ -115,7 +115,8 @@
 
                   <div class="card-title-wrapper">
                     <h3 class="h3 card-title">
-                      <a href="#"><?php echo $row['model']; ?></a>
+                      <a><?php echo $row['model']; ?></a>
+                      <p style="font-size:15px;"><?php echo $row['name']; ?></p>
                     </h3>
 
                     <data class="year" value="2021"><?php echo $row['regNumber']; ?></data>

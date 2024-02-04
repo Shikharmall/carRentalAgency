@@ -24,10 +24,6 @@
       <nav class="navbar" data-navbar>
         <ul class="navbar-list">
 
-          <!--<li>
-              <a href="home.php" class="navbar-link" style="<?php echo (strcasecmp($currentPath, '/Car Rental Agency/views/home.php') === 0) ? 'color: red;' : '' ?>" data-nav-link>Home</a>
-          </li>-->
-
           <li>
               <a href="home.php" class="navbar-link " data-nav-link>Home</a>
           </li>
@@ -80,9 +76,6 @@
       <div class="header-actions">
 
         <div class="header-contact">
-          <!--<a href="tel:88002345678" class="contact-link">8 800 234 56 78</a>
-
-          <span class="contact-time">Mon - Sat: 9:00 am - 6:00 pm</span>-->
         </div>
 
         <a href="exploreCar.php" class="btn" aria-labelledby="aria-label-txt">
@@ -122,6 +115,43 @@
             </div>
 
         </div>
+
+        <!--<div class="dropdown-container" id="profileModal">
+					<details class="dropdown left">
+						<summary>
+							<span class="with-down-arrow">Jane Doe</span>
+						</summary>
+						<ul>
+							<li>
+								<p>
+									<span class="block bold">Jane Doe</span>
+									<span class="block italic">jane@example.com</span>
+								</p>
+							</li>
+							<li>
+								<a href="#">
+									<span class="material-symbols-outlined">account_circle</span> Account
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<span class="material-symbols-outlined">settings</span> Settings
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<span class="material-symbols-outlined">help</span> Help
+								</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="#">
+									<span class="material-symbols-outlined">logout</span> Logout
+								</a>
+							</li>
+						</ul>
+					</details>
+				</div>-->
 
 
 
