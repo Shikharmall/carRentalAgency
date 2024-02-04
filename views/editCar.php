@@ -164,7 +164,8 @@
                         </div>
                         <div class="input-box">
                             <input type="text" name="regNumber" value="<?php echo $regNumberr; ?>" required>
-                            <label>Registration Number</label>
+                            <label id ="showw">Registration Number</label>
+                            <label id ="notshoww">Reg. Number</label>
                             <ion-icon name="document-text-outline"></ion-icon>
                         </div>
                         <div class="input-box">

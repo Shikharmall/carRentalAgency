@@ -779,6 +779,14 @@
   margin: 40px 0px;
 }
 
+#showw{
+  display: block;
+}
+
+#notshoww{
+  display: none;
+}
+
 .input-box input {
   width: 90%;
   position: absolute;
@@ -1341,6 +1349,33 @@
   
     .footer-list:last-of-type { width: 33.33%; }
   
+  }
+
+  @media (max-width: 680px) {
+
+    .Form-box {
+      width: 400px;
+      height: 1000px;
+    }
+    
+  }
+
+
+  @media (max-width: 460px) {
+
+    .Form-box {
+      width: 250px;
+      height: 1000px;
+    }
+
+    #showw{
+      display: none;
+    }
+
+    #notshoww{
+      display: block;
+    }
+    
   }
   
   

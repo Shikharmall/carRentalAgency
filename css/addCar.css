@@ -748,7 +748,6 @@
   
   
 .Form-box {
-  position: relative;
   width: 600px;
   height: 1000px;
   backdrop-filter: blur(40px);
@@ -759,6 +758,7 @@
   overflow: hidden;
   transition: transform 0.6s ease, height 0.2s ease-in-out;
 }
+
 .Form-box form {
   display: flex;
   /*justify-content: center; */
@@ -995,7 +995,13 @@
   
   }
   
+  #showw{
+    display: block;
+  }
   
+  #notshoww{
+    display: none;
+  }
   
   
   
@@ -1188,12 +1194,6 @@
   
   
   
-  
-  
-  /**
-   * responsive for large than 1200px screen
-   */
-  
   @media (min-width: 1200px) {
   
     /**
@@ -1307,5 +1307,32 @@
     .footer-list:last-of-type { width: 33.33%; }
   
   }
-  
+
+  @media (max-width: 680px) {
+
+    .Form-box {
+      width: 400px;
+      height: 1000px;
+    }
+    
+  }
+
+
+  @media (max-width: 460px) {
+
+    .Form-box {
+      width: 250px;
+      height: 1000px;
+    }
+
+    #showw{
+      display: none;
+    }
+
+    #notshoww{
+      display: block;
+    }
+    
+  }
+
   

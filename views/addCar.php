@@ -142,6 +142,84 @@
                             </div>
                             <div class="input-box">
                                 <input type="text" name="regNumber" required>
+                                <label id ="showw">Registration Number</label>
+                                <label id ="notshoww">Reg. Number</label>
+                                <ion-icon name="document-text-outline"></ion-icon>
+                            </div>
+                            <div class="input-box">
+                                <input type="number" name="seatCapacity" required min="1">
+                                <label>Seat Capacity</label>
+                                <ion-icon name="people-outline"></ion-icon>
+                            </div>
+                            <div class="input-box">
+                                <input type="text" name="rentPerDay" required>
+                                <label>Rent Per Day</label>
+                                <ion-icon name="card-outline"></ion-icon>
+                            </div>
+                            <div class="input-box">
+                                <input type="text" name="gearType" required>
+                                <label>Gear Type</label>
+                                <ion-icon name="cog-outline"></ion-icon>
+                            </div>
+                            <div class="input-box">
+                                <input type="number" name="maxSpeed" required min="0">
+                                <label>Maximum Speed</label>
+                                <ion-icon name="flash-outline"></ion-icon>
+                            </div>
+                            <div class="input-box">
+                                <input type="number" name="mileage" required min="0">
+                                <label>Mileage</label>
+                                <ion-icon name="speedometer-outline"></ion-icon>
+                            </div>
+                            <div class="input-box" id="dashedLine">
+                                <label for="imageInput"> 
+                                    <span id="previewHeading">
+                                        <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 4a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5a1 1 0 0 1 1-1z" fill="#D3D3D3"/>
+                                        </svg>
+                                    </span> 
+                                </label>
+                                <input type="file" name="image" id="imageInput" accept="image/*" onchange="previewImage()" style="display:none;">
+                                <img src="" alt="Image Preview" class="image-preview" id="imagePreview">
+                            </div>
+                            <button type="submit" class="submit-btn">Add Car</button>
+                        </form>
+                    </div>
+
+                </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!--
+
+
+   <main>
+    <article>
+
+      <section class="section get-start">
+        <div class="container">
+
+          <ul class="get-start-list">
+
+            <li>
+                <div class="get-start-card">
+
+                    <div class="Form-box">
+                        <form class="Login-form" action="addCar.php" method="POST" enctype="multipart/form-data">
+                            <div class="input-box">
+                                <input type="text" name="model" required>
+                                <label>Model</label>
+                                <ion-icon name="car-outline"></ion-icon>
+                            </div>
+                            <div class="input-box">
+                                <input type="text" name="regNumber" required>
                                 <label>Registration Number</label>
                                 <ion-icon name="document-text-outline"></ion-icon>
                             </div>
@@ -195,6 +273,7 @@
 
     </article>
   </main>
+  -->
 
 
   <?php
