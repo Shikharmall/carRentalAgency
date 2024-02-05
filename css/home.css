@@ -94,6 +94,8 @@
   box-sizing: border-box;
 }
 
+body{overflow: hidden;}
+
 li { list-style: none; }
 
 a { text-decoration: none; }
@@ -194,7 +196,7 @@ button, a { transition: var(--transition); }
 
 .btn:is(:hover, :focus)::before { opacity: 1; }
 
-.section { padding-block: var(--section-padding); }
+.section { padding-block: var(--section-padding); overflow: hidden;}
 
 .h1,
 .h2,
@@ -1193,5 +1195,11 @@ button, a { transition: var(--transition); }
 
   .footer-list:last-of-type { width: 33.33%; }
 
+}
+
+
+
+@media (max-width: 1200px) {
+  
 }
 
